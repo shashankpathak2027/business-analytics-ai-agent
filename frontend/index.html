@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analytica — Enterprise Business Analytics AI Agent</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <div class="brand">
+        <span class="brand-mark">A</span>
+        <div class="brand-text">
+          <h1>Analytica</h1>
+          <p class="brand-tagline">Enterprise Business Analytics AI Agent</p>
+        </div>
+      </div>
+
+      <div class="session-status" id="sessionStatus">
+        <span class="status-dot" id="statusDot"></span>
+        <span id="statusLabel">No dataset loaded</span>
+      </div>
+    </header>
+
+    <div class="app-body">
+      <aside class="sidebar">
+        <section class="panel upload-panel">
+          <h2 class="panel-title"><span class="panel-index">01</span> Upload Dataset</h2>
+          <p class="panel-hint">Upload a single CSV file to begin the analysis.</p>
+
+          <label class="file-drop" for="csvFileInput" id="fileDropLabel">
+            <span class="file-drop-icon">⇧</span>
+            <span class="file-drop-text" id="fileDropText">Choose a CSV file</span>
+          </label>
+          <input type="file" id="csvFileInput" accept=".csv" hidden />
+
+          <button type="button" id="uploadBtn" class="btn btn-primary" disabled>
+            Upload Dataset
+          </button>
+
+          <p class="upload-status" id="uploadStatus"></p>
+        </section>
+
+        <section class="panel question-panel">
+          <h2 class="panel-title"><span class="panel-index">02</span> Ask a Question</h2>
+          <p class="panel-hint">Ask about trends, root causes, forecasts, or request a full report.</p>
+
+          <textarea
+            id="questionInput"
+            class="question-input"
+            rows="4"
+            placeholder="e.g. Why are sales decreasing this quarter?"
+            disabled
+          ></textarea>
+
+          <button type="button" id="askBtn" class="btn btn-accent" disabled>
+            Ask Analytica
+          </button>
+
+          <ul class="suggested-questions" id="suggestedQuestions">
+            <li data-question="Give me a full analysis of this dataset.">Analyze my dataset</li>
+            <li data-question="Which products should we discontinue?">Which products should we discontinue?</li>
+            <li data-question="Which customers are the most valuable?">Most valuable customers?</li>
+            <li data-question="Generate an executive report.">Generate an executive report</li>
+          </ul>
+        </section>
+      </aside>
+
+      <main class="workspace">
+        <div class="loading-indicator" id="loadingIndicator" hidden>
+          <span class="loading-spinner"></span>
+          <span class="loading-text" id="loadingText">Analyzing dataset…</span>
+        </div>
+
+        <section class="panel conversation-panel">
+          <h2 class="panel-title"><span class="panel-index">03</span> Conversation</h2>
+          <div class="conversation-area" id="conversationArea">
+            <div class="empty-state" id="conversationEmptyState">
+              Upload a dataset and ask your first question to start the conversation.
+            </div>
+          </div>
+        </section>
+
+        <section class="panel charts-panel">
+          <h2 class="panel-title"><span class="panel-index">04</span> Visualizations</h2>
+          <div class="charts-container" id="chartsContainer">
+            <div class="empty-state" id="chartsEmptyState">
+              Charts generated during analysis will appear here.
+            </div>
+          </div>
+        </section>
+
+        <section class="panel report-panel">
+          <h2 class="panel-title"><span class="panel-index">05</span> Executive Report</h2>
+          <div class="report-content" id="reportContent">
+            <div class="empty-state" id="reportEmptyState">
+              Your generated business report will appear here.
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="app-footer">
+      <p>Thread ID: <span id="threadIdDisplay">—</span></p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
